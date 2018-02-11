@@ -9,7 +9,7 @@ CANIUSE.COM
 
 Parallax es un efecto que se mafiesta al momento de hacer scroll.
 
-	vh: view port , sirve para dar el un porcetaje agregado 		para   hacer scroll
+	vh: view port , sirve para darle un porcetaje agregado 		para   hacer scroll
 
 	En este caso la etiqueta será:
 
@@ -18,6 +18,7 @@ Parallax es un efecto que se mafiesta al momento de hacer scroll.
 		heigth:200vh;
 		}
 	Es decir , el 200% que tenga de alto mi view port
+                este tamaño se vera reflejado en el scroll.
 
 -Asignar la posicion en el medio :
 
@@ -39,5 +40,87 @@ Parallax es un efecto que se mafiesta al momento de hacer scroll.
 
 
 -Mascaras en CSS
+
+Las mascaras se manejar por capas , usualmente se arreglan
+con un z-index, pero hay que tener muy en cuenta la posicion
+donde quiero mi capa y el formato que voy a utilizar con la ima
+gen.
+
+-Para las mascaras se utiliza el comando:
+
+	-webkit-mask-image: url(images/apple-mask.png)
+
+	Asignamos webkit para que corra en nuestro navegador.
+
+
+-Imprimir una fraccion de la imagen con css.
+
+      Ingresamos la ruta de la imagen y luego
+      le asignamos el tamaño:
+
+      background-image: url(images/shape.jpg);
+      width:  128px;
+      height: 128px;
+
+     Asignamos la posicion de la imagen para crear el efecto 
+     correcto a la hora de ver la transicion.
+
+CODIGO COMPLETO:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Especial 1 - Parallax</title>
+    <style>
+    .container{
+      height: 200vh;
+      width: 800px;
+      margin: 0 auto;
+      text-align: center;
+
+    }
+    .iphone{
+      display:  inline-block;
+      margin-top: 150px;
+      position: relative;
+      transition: .1s;
+    }
+    .shape{
+      background-image: url(images/shape.jpg);
+      width:  128px;
+      height: 128px;
+      position: absolute;
+      top: 75px;
+      right: 161px;
+      background-position: -54px ;
+      -webkit-mask-image: url(images/apple-mask.png)
+    }
+
+    </style>
+  </head>
+  <body>
+<section class="container">
+  <figure class="iphone" id="iphone">
+    <img src="images/iphone.jpg" alt="Imagen del iphone">
+    <div class="shape " id="mask"></div>
+  </figure>
+</section>
+<section>
+  <script>
+  const $iphone = document.getElementById('iphone');
+  const $mask = document.getElementById('mask');
+
+      window.addEventListener('scroll',function(e){
+        console.log(window.scrollY);
+        var position = 54 + window.scrollY;
+        $mask.style.backgroundPosition = '-'+ window.scrollY + 'px';
+        $iphone.style.transform = 'rotate(-'+ position*0.02 +'deg)';
+      });
+  </script>
+</section>
+  </body>
+</html>
+
 
 	
