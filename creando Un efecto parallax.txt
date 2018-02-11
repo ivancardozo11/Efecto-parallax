@@ -1,0 +1,43 @@
+creando Un efecto parallax
+
+VER SI PUEDO USAR UN CODIGO:
+
+CANIUSE.COM
+
+
+
+
+Parallax es un efecto que se mafiesta al momento de hacer scroll.
+
+	vh: view port , sirve para dar el un porcetaje agregado 		para   hacer scroll
+
+	En este caso la etiqueta será:
+
+
+	container{
+		heigth:200vh;
+		}
+	Es decir , el 200% que tenga de alto mi view port
+
+-Asignar la posicion en el medio :
+
+.container{
+      height: 200vh;
+      width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+-Como hacer un position:fixed con javascript:
+<script>
+  const $iphone = document.getElementById('iphone');
+      window.addEventListener('scroll',function(e){
+        console.log(window.scrollY);
+        $iphone.style.marginTop = window.scrollY + 'px';
+      });
+  </script>
+
+
+-Mascaras en CSS
+
+	
